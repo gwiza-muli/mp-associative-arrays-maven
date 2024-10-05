@@ -9,7 +9,7 @@ import static java.lang.reflect.Array.newInstance;
  * @param <K> the key type
  * @param <V> the value type
  *
- * @author Your Name Here
+ * @author Sheilla Muligande
  * @author Samuel A. Rebelsky
  */
 public class AssociativeArray<K, V> {
@@ -59,14 +59,16 @@ public class AssociativeArray<K, V> {
    *
    * @return a new copy of the array
    */
+  @SuppressWarnings({"unchecked"})
   public AssociativeArray<K, V> clone() {
-    AssociativeArray<K,V> copyArray = new AssociativeArray<>();
+    AssociativeArray<K, V> copyArray = new AssociativeArray<>();
     copyArray.size = this.size;
-    for (int i = 0; i < this.pairs.length; i++){
-      if (this.pairs[i] != null && this.pairs[i].key != null){
+    copyArray.pairs = new KVPair[this.pairs.length];
+    for (int i = 0; i < this.pairs.length; i++) {
+      if (this.pairs[i] != null) {
         copyArray.pairs[i] = this.pairs[i].clone();
-      } //if
-    } //for
+      } // if
+    } // for
     return copyArray;
   } // clone()
 
@@ -76,22 +78,24 @@ public class AssociativeArray<K, V> {
    * @return a string of the form "{Key0:Value0, Key1:Value1, ... KeyN:ValueN}"
    */
   public String toString() {
-    if (size == 0){
+    if (size == 0) {
       return "{}";
     }
 
     String arrayString = "{";
+    int numElements = 0;
 
-    for (int i = 0; i < pairs.length; i++){    /////////// might want to change from pairs.length to size if we don't want it to print nulls???
-      if (pairs[i] != null){
+    for (int i = 0; i < pairs.length; i++) {
+      if (pairs[i] != null) {
+        if (numElements > 0) {
+          arrayString += ", ";
+        } // if
         arrayString += pairs[i].key + ":" + pairs[i].val;
-        if (i < pairs.length - 1){
-          arrayString += ",";
-        }
-      }
-    }
+        numElements++;
+      } // if
+    } // for
 
-    return (arrayString + "}"); 
+    return (arrayString + "}");
   } // toString()
 
   // +----------------+----------------------------------------------
@@ -116,10 +120,10 @@ public class AssociativeArray<K, V> {
       pairs[keyIndex].val = value;
       return;
     } catch (KeyNotFoundException e) {
-     
+
     } // try/catch
 
-    if (size >= pairs.length){
+    if (size >= pairs.length) {
       expand();
     }
 
