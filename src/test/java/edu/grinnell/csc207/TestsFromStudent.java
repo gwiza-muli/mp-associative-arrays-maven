@@ -25,6 +25,8 @@ public class TestsFromStudent {
   @Test
   public void alwaysPass() throws Exception {} // alwaysPass()
 
+  
+
 } // class TestsFromStudent
 
 
