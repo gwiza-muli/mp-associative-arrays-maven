@@ -164,7 +164,6 @@ public class AssociativeArray<K, V> {
    * @return true if the key appears and false otherwise.
    */
   public boolean hasKey(K key) {
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     try {
       if (key == null) {
         return false;
