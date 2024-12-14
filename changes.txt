@@ -1,0 +1,7 @@
+changes: MP$ associative array redo.
+
+Name: Sheilla Muligande
+Date: 12/13/2024
+course: CSC207
+
+Changes: adding a purpose to the README.Md.
